@@ -70,8 +70,10 @@ header {
   padding: 10px;
   position: relative; }
 
-header h1 {
-  font-size: 1.5em; }
+header h1 a {
+  font-size: 1.3em;
+  text-decoration: none;
+  color: #FFF; }
 
 header nav {
   position: absolute;
