@@ -30,7 +30,8 @@ class SetViewComponent extends React.Component {
 
     var cardList;
     if (currentSet.cards.length === 0) {
-      cardList = <div>You have no cards.</div>
+      cardList = <div>You have no cards.</div>;
+      var className = 'quiz';
     }
     else {
       cardList = <ul>
@@ -49,7 +50,7 @@ class SetViewComponent extends React.Component {
       <div className="controls">
         <ul>
           <li><Link to={'/set/' + this.props.match.params.setId + '/newcard'}>Add a New Card</Link></li>
-          <li><Link to={'/set/' + this.props.match.params.setId + '/quizzer'}>Quizzer</Link></li>
+          <li><Link className={className} to={'/set/' + this.props.match.params.setId + '/quizzer'}>Quizzer</Link></li>
         </ul>
 
 

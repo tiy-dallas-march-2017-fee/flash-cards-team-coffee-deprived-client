@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
     case constants.CHANGE_SORT:
       let copy = state.list.slice();
       if (action.sort === 'name') {
+
         copy.sort((a, b) => { return (
           a.name > b.name,
           Object.assign({}, state, {className: "sorting by-card-count"})
@@ -25,6 +26,8 @@ const reducer = (state = initialState, action) => {
           Object.assign({}, state, {className: "sorting by-card-count" })
         );
         });
+
+        copy.sort((a, b) => { return a.name > b.name; });
       }
 
       return Object.assign({}, state, { list: copy, sortSetsBy: action.sort});
