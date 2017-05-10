@@ -58,12 +58,6 @@ class SetListComponent extends React.Component {
     }
 
 
-    console.log(this.state);
-
-
-
-
-
     return <div className="set-list">
       <h2>Set List</h2>
 
