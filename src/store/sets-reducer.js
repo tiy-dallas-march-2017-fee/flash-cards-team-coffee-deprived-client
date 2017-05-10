@@ -2,7 +2,7 @@ import constants from './constants.js';
 
 const initialState = {
   list: [],
-  sortSetsBy: 'name'
+  sortSetsBy: 'name',
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,11 +12,12 @@ const reducer = (state = initialState, action) => {
     case constants.CHANGE_SORT:
       let copy = state.list.slice();
       if (action.sort === 'name') {
-        copy.sort((a, b) => { return a.name > b.name; });
-      } else {
-        copy.sort((a, b) => { return a.cards.length < b.cards.length; });
+        copy.sort((a, b) => { return a.name > b.name});
       }
-      return Object.assign({}, state, { list: copy, sortSetsBy: action.sort });
+      else {
+        copy.sort((a, b) => { return a.cards.length < b.cards.length});
+      }
+      return Object.assign({}, state, { list: copy, sortSetsBy: action.sort});
     default:
       return state;
   }

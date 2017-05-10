@@ -27,12 +27,15 @@ class SetListComponent extends React.Component {
   }
 
   sortByName() {
-    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'name' });
+    console.log(this.state);
+
+    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'name'});
     store.dispatch(action);
   }
 
   sortByCardCount() {
-    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'cardCount' });
+    console.log(this.state);
+    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'cardCount'});
     store.dispatch(action);
   }
 
