@@ -14,10 +14,9 @@ let UserData = {
       url: `${URL}/api/sets`
     })
     .done((data) => {
-
+      console.log('data has been saved to the set', data);
       const action = Object.assign({}, actions.LOAD_SETS, { sets: data.sets })
       store.dispatch(action);
-
       userData = data;
       cb(data)
     });
@@ -65,12 +64,9 @@ let UserData = {
     });
   },
 
-
-
   // Cards
 
   addCardToSet: (setId, front, back, cb) => {
-
     $.ajax({
       url: `${URL}/api/sets/${setId}/card`,
       method: 'POST',
@@ -81,8 +77,12 @@ let UserData = {
       }
     })
     .done((data) => {
-      UserData.loadSets(cb)
+      console.log('I saved the data', data);
     });
+  },
+
+  submitCardsToSet: (cb) => {
+    UserData.loadSets(cb)
   },
 
   incrementIncorrectCountOnCard: (setId, cardId, cb) => {

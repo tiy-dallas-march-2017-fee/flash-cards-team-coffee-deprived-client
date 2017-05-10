@@ -10,7 +10,6 @@ const reducer = (state = initialState, action) => {
     case constants.LOAD_SETS:
       return Object.assign({}, state, { list: action.sets });
     case constants.CHANGE_SORT:
-
       let copy = state.list.slice();
       if (action.sort === 'name') {
         copy.sort((a, b) => { return a.name > b.name; });
