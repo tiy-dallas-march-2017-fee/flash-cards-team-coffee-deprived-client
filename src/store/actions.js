@@ -11,7 +11,6 @@ const QUIZ_CARD_SKIP = { type:
 constants.QUIZ_CARD_SKIP };
 
 const TOGGLE_CARD= { type: constants.TOGGLE_CARD };
- f866f915080cb96578d34ba318f246a46b06d3d7
 
 const actions = {
   LOAD_SETS: LOAD_SETS,
@@ -21,10 +20,10 @@ const actions = {
   QUIZ_CARD_CORRECT: QUIZ_CARD_CORRECT,
   QUIZ_CARD_INCORRECT: QUIZ_CARD_INCORRECT,
 
-  QUIZ_CARD_SKIP: QUIZ_CARD_SKIP
+  QUIZ_CARD_SKIP: QUIZ_CARD_SKIP,
 
   TOGGLE_CARD: TOGGLE_CARD
-  f866f915080cb96578d34ba318f246a46b06d3d7
+
 };
 
 module.exports = actions;
