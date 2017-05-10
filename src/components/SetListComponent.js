@@ -29,12 +29,15 @@ class SetListComponent extends React.Component {
   }
 
   sortByName() {
-    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'name' });
+    console.log(this.state);
+
+    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'name'});
     store.dispatch(action);
   }
 
   sortByCardCount() {
-    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'cardCount' });
+    console.log(this.state);
+    const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'cardCount'});
     store.dispatch(action);
   }
 
@@ -57,6 +60,8 @@ class SetListComponent extends React.Component {
 
     }
 
+    console.log(this.state.sets.className);
+
 
     return <div className="set-list">
       <h2>Set List</h2>
@@ -65,7 +70,9 @@ class SetListComponent extends React.Component {
 
       <Link to="/create-set" className="create-set">Create new set</Link>
 
-      <div className="sorting">
+
+
+      <div className={this.state.sets.className}>
         <div className="by-name" onClick={() => this.sortByName() }>by name</div>
         <div className="by-card-count" onClick={() => this.sortByCardCount() }>by # of cards</div>
       </div>
@@ -79,6 +86,8 @@ class SetListComponent extends React.Component {
         else {
           var className = "button";
         }
+
+
 
         return <li key={set.id} className="set">
           <div className="set-name">{set.name}</div>
