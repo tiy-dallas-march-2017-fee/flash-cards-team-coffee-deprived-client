@@ -6,9 +6,7 @@ var userData;
 const noop = () => {};
 
 let UserData = {
-
   // Sets
-
   loadSets(cb) {
     $.ajax({
       url: `${URL}/api/sets`
@@ -23,14 +21,11 @@ let UserData = {
   },
 
   getSet: (setId, cb) => {
-
     let callback = cb || noop;
-
     var setExists = () => {
       var set = userData.sets.find((x) => { return x.id === setId});
       callback(set);
     };
-
     if (userData === undefined) {
       UserData.loadSets(setExists);
     }
@@ -65,7 +60,6 @@ let UserData = {
   },
 
   // Cards
-
   addCardToSet: (setId, front, back, cb) => {
     $.ajax({
       url: `${URL}/api/sets/${setId}/card`,
@@ -107,14 +101,10 @@ let UserData = {
     .done((data) => {
       cb();
     });
-
-
   },
 
   incrementCorrectCountOnCard: (setId, cardId, cb) => {
-
     var set = userData.sets.find((x) => { return x.id === setId });
-
     // We have to find the position to update the server correctly.
     // We need the card to update the correct count in memory.
     var position;
@@ -125,9 +115,7 @@ let UserData = {
         position = index;
       }
     });
-
     card.correctCount += 1;
-
     $.ajax({
       url: `${URL}/api/sets/${setId}/card/${position}/correct`,
       method: 'POST'
@@ -135,30 +123,26 @@ let UserData = {
     .done((data) => {
       cb();
     });
-
-
   },
 
   incrementSkippedCountOnCard: (setId, cardId, cd) => {
     var set = userData.sets.find((x) => { return x.id === setId});
-
     var position;
     var card;
-      set.cards.forEach((x, index) => {
-        if (x.id == cardId) {
-          card = x;
-          position = index;
-        }
-      });
-
-      card.skippedCount += 1;
-      $.ajax ({
-        url:`${URL}/api/sets/${setId}/card/${position}/correct`,
-        method: 'POST'
-      })
-        .done((data) => {
-          cd();
-        });
+    set.cards.forEach((x, index) => {
+      if (x.id === cardId) {
+        card = x;
+        position = index;
+      }
+    });
+    card.skippedCount += 1;
+    $.ajax ({
+      url:`${URL}/api/sets/${setId}/card/${position}/correct`,
+      method: 'POST'
+    })
+    .done((data) => {
+      cd();
+    });
   }
 };
 

@@ -7,7 +7,6 @@ const START_QUIZ = { type: constants.START_QUIZ };
 const QUIZ_CARD_CORRECT = { type: constants.QUIZ_CARD_CORRECT };
 const QUIZ_CARD_INCORRECT = { type: constants.QUIZ_CARD_INCORRECT };
 const QUIZ_CARD_SKIP = { type:constants.QUIZ_CARD_SKIP };
-
 const TOGGLE_CARD = { type: constants.TOGGLE_CARD };
 
 const actions = {
