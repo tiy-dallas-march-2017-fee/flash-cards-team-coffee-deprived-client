@@ -145,7 +145,7 @@ let UserData = {
     var position;
     var card;
       set.cards.forEach((x, index) => {
-        if (x.id == cardId) {
+        if (x.id === cardId) {
           card = x;
           position = index;
         }
