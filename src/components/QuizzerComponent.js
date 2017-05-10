@@ -51,6 +51,11 @@ class QuizzerComponent extends React.Component {
   }
 
   skip() {
+    var card =
+    this.state.quizzer.cards[this.state.quizzer.currentCard];
+    card.skippedCount += 1;
+    UserData.incrementSkippedCountOnCard(this.props.setId, card.id, () => {});
+    
     store.dispatch(actions.QUIZ_CARD_SKIP);
   }
 
@@ -80,7 +85,7 @@ class QuizzerComponent extends React.Component {
       cardNavigation = <div className="card-navigation">
         <div className="correct" onClick={() => { this.markCorrect();}}>Correct</div>
         <div className="incorrect" onClick={() => {this.markIncorrect();}}>Incorrect</div>
-        <div className="skip">Skip</div>
+        <div className="skip" onClick={() => {this.skip();}}>Skip</div>
 
       </div>;
     }

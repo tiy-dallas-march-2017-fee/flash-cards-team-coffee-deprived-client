@@ -137,8 +137,29 @@ let UserData = {
     });
 
 
-  }
+  },
 
+  incrementSkippedCountOnCard: (setId, cardId, cd) => {
+    var set = userData.sets.find((x) => { return x.id === setId});
+
+    var position;
+    var card;
+      set.cards.forEach((x, index) => {
+        if (x.id == cardId) {
+          card = x;
+          position = index;
+        }
+      });
+
+      card.skippedCount += 1;
+      $.ajax ({
+        url:`${URL}/api/sets/${setId}/card/${position}/correct`,
+        method: 'POST'
+      })
+        .done((data) => {
+          cd();
+        });
+  }
 };
 
 module.exports = UserData;

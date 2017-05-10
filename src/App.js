@@ -18,7 +18,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header>
-            <h1>A Flash Card App</h1>
+            <h1><a href="#">A Flash Card App</a></h1>
           </header>
           <div className="main-content">
               <div>
