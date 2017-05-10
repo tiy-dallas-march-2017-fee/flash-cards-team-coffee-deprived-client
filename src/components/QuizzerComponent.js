@@ -7,7 +7,6 @@ class QuizzerComponent extends React.Component {
 
   constructor() {
     super();
-
     this.state = store.getState();
   }
 
@@ -27,14 +26,13 @@ class QuizzerComponent extends React.Component {
   }
 
   cardClicked() {
-    var copiedState = Object.assign({}, this.state);
-    copiedState.showFront = !copiedState.showFront;
 
-    this.setState(copiedState);
+    store.dispatch(actions.TOGGLE_CARD);
+    console.log(this.state.quizzer);
+
   }
 
   markCorrect() {
-
     var card = this.state.quizzer.cards[this.state.quizzer.currentCard];
     card.correctCount += 1;
     UserData.incrementCorrectCountOnCard(this.props.setId, card.id, () => {});
@@ -61,6 +59,15 @@ class QuizzerComponent extends React.Component {
 
   backToSetList() {
     this.props.history.push('/');
+  }
+
+  restartQuiz(){
+    console.log(this.props);
+    var cb = (set) => {
+      const action = Object.assign({}, actions.START_QUIZ, { set: set });
+      store.dispatch(action);
+    };
+    UserData.getSet(this.props.setId, cb);
   }
 
   render() {
@@ -96,7 +103,7 @@ class QuizzerComponent extends React.Component {
         skipped={this.state.quizzer.skippedCount} />
 
       summaryNavigation = <div className="summary-choices">
-          <div>Quiz again</div>
+          <div onClick={() => this.restartQuiz()}>Quiz again</div>
           <div onClick={() => this.backToSetList()}>Back to set list</div>
         </div>;
     }
