@@ -43,7 +43,6 @@ const reducer = (state = initialState, action) => {
       currentCard: state.currentCard + 1,
       skippedCount: state.skippedCount + 1
     });
-
     case constants.TOGGLE_CARD:
       return Object.assign({}, state, {
         showFront: state.showFront ? false : true

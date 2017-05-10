@@ -4,6 +4,7 @@ import UserData from './../UserData.js';
 class CardEditorComponent extends React.Component {
 
   submitCard(evt) {
+    console.log(this.props.history);
     evt.preventDefault();
 
     var cb = () => {
