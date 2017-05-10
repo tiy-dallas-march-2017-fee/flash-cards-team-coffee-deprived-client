@@ -38,16 +38,15 @@ const reducer = (state = initialState, action) => {
         currentCard: state.currentCard + 1,
         incorrectCount: state.incorrectCount + 1
       });
-<<<<<<< HEAD
     case constants.QUIZ_CARD_SKIP:
       return Object.assign({}, state, {
       currentCard: state.currentCard + 1,
       skippedCount: state.skippedCount + 1
-=======
+    });
+
     case constants.TOGGLE_CARD:
       return Object.assign({}, state, {
         showFront: state.showFront ? false : true
->>>>>>> f866f915080cb96578d34ba318f246a46b06d3d7
       });
     default:
       return state;
