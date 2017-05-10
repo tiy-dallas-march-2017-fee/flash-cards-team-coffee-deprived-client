@@ -38,9 +38,13 @@ const reducer = (state = initialState, action) => {
         currentCard: state.currentCard + 1,
         incorrectCount: state.incorrectCount + 1
       });
+    case constants.TOGGLE_CARD:
+      return Object.assign({}, state, {
+        showFront: state.showFront ? false : true
+      });
     default:
       return state;
   }
-}
+};
 
 module.exports = reducer;

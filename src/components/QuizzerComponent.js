@@ -26,10 +26,10 @@ class QuizzerComponent extends React.Component {
   }
 
   cardClicked() {
-    var copiedState = Object.assign({}, this.state);
-    copiedState.showFront = !copiedState.showFront;
 
-    this.setState(copiedState);
+    store.dispatch(actions.TOGGLE_CARD);
+    console.log(this.state.quizzer);
+
   }
 
   markCorrect() {
