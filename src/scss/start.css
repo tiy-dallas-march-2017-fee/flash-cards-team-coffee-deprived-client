@@ -75,6 +75,9 @@ header h1 a {
   text-decoration: none;
   color: #FFF; }
 
+header h1 a:hover {
+  color: grey; }
+
 header nav {
   position: absolute;
   top: 15px;
