@@ -170,6 +170,9 @@ footer {
 .set-editor input {
   display: block; }
 
+.quiz {
+  display: none; }
+
 .set-component .card {
   border: solid 1px #000;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
