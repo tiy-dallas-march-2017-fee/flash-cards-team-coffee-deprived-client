@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import React from 'react';
 import { store, actions } from './store/store.js';
 
 const URL = 'http://localhost:5003';
@@ -28,8 +29,7 @@ let UserData = {
     };
     if (userData === undefined) {
       UserData.loadSets(setExists);
-    }
-    else {
+    } else {
       setExists();
     }
   },
@@ -81,6 +81,7 @@ let UserData = {
     var set = userData.sets.find((x) => { return x.id === setId });
     // We have to find the position to update the server correctly.
     // We need the card to update the correct count in memory.
+
     var position;
     var card;
     set.cards.forEach((x, index) => {
@@ -90,7 +91,8 @@ let UserData = {
       }
     });
 
-    card.incorrectCount += 1;
+
+    console.log('user data count', card.incorrectCount);
 
     $.ajax({
       url: `${URL}/api/sets/${setId}/card/${position}/incorrect`,
@@ -105,6 +107,7 @@ let UserData = {
     var set = userData.sets.find((x) => { return x.id === setId });
     // We have to find the position to update the server correctly.
     // We need the card to update the correct count in memory.
+    console.log(set);
     var position;
     var card;
     set.cards.forEach((x, index) => {
@@ -113,12 +116,13 @@ let UserData = {
         position = index;
       }
     });
-    card.correctCount += 1;
+
     $.ajax({
       url: `${URL}/api/sets/${setId}/card/${position}/correct`,
       method: 'POST'
     })
     .done((data) => {
+      console.log(data);
       cb();
     });
   },
