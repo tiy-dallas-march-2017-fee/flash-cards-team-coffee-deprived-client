@@ -1,5 +1,6 @@
 import React from 'react';
 import UserData from './../UserData.js';
+import { Link } from 'react-router-dom';
 
 class SetEditorComponent extends React.Component {
 
@@ -19,7 +20,11 @@ class SetEditorComponent extends React.Component {
 
         <textarea placeholder="description" ref={(input) => { this.descriptionInput = input; }} ></textarea>
 
-        <button style={{display: 'block', marginTop: "10px"}}>Save</button>
+        <div>
+          <button style={{marginTop: "10px", marginRight: "10px"}}>Save</button>
+          <Link to={'/'}><button style={{marginTop: "10px"}}>Quiz Quiz?</button></Link>
+        </div>
+
       </form>
     </div>
   }

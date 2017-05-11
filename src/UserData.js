@@ -43,8 +43,7 @@ let UserData = {
         description: description
       }
     })
-    .done((first, second) => {
-      console.log('first', first, 'second', second);
+    .done(() => {
       cb();
     });
   },

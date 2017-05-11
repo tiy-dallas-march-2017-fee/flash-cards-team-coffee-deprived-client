@@ -51,6 +51,7 @@ class SetViewComponent extends React.Component {
         <ul>
           <li><Link to={'/set/' + this.props.match.params.setId + '/newcard'}>Add a New Card</Link></li>
           <li><Link className={className} to={'/set/' + this.props.match.params.setId + '/quizzer'}>Quizzer</Link></li>
+          <li><Link to={'/'}><button>Quiz Quiz?</button></Link></li>
         </ul>
 
 
