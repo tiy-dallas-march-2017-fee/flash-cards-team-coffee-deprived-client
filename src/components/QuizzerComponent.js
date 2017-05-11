@@ -10,26 +10,16 @@ class QuizzerComponent extends React.Component {
     super();
     this.state = store.getState();
   }
-
   componentDidMount() {
     this.unsub = store.subscribe(() => this.setState(store.getState()));
-
-    var cb = (set) => {
-      const action = Object.assign({}, actions.START_QUIZ, { set: set });
-      store.dispatch(action);
-    };
-
-    UserData.getSet(this.props.setId, cb);
+    this.restartQuiz(this.props.setId);
   }
-
   componentWillUnmount() {
     this.unsub();
   }
-
   cardClicked() {
     store.dispatch(actions.TOGGLE_CARD);
   }
-
   markCorrect() {
     var card = this.state.quizzer.cards[this.state.quizzer.currentCard];
     card.correctCount += 1;
@@ -45,7 +35,6 @@ class QuizzerComponent extends React.Component {
 
     store.dispatch(actions.QUIZ_CARD_INCORRECT);
   }
-
   skip() {
     var card =
     this.state.quizzer.cards[this.state.quizzer.currentCard];
@@ -54,11 +43,9 @@ class QuizzerComponent extends React.Component {
 
     store.dispatch(actions.QUIZ_CARD_SKIP);
   }
-
   backToSetList() {
     this.props.history.push('/');
   }
-
   restartQuiz(){
     var cb = (set) => {
       const action = Object.assign({}, actions.START_QUIZ, { set: set });
@@ -66,9 +53,7 @@ class QuizzerComponent extends React.Component {
     };
     UserData.getSet(this.props.setId, cb);
   }
-
   render() {
-    console.log(this.state);
     var cardShower;
     var cardNavigation;
     var summary;
@@ -83,15 +68,14 @@ class QuizzerComponent extends React.Component {
         <div
           className="card"
           onClick={(evt) => { this.cardClicked(evt); }}>
-          {textToShow}</div>
+          {textToShow}
+        </div>
       </div>
-
 
       cardNavigation = <div className="card-navigation">
         <div className="correct" onClick={() => { this.markCorrect();}}>Correct</div>
         <div className="incorrect" onClick={() => {this.markIncorrect();}}>Incorrect</div>
         <div className="skip" onClick={() => {this.skip();}}>Skip</div>
-
       </div>;
     }
     else {
@@ -109,7 +93,6 @@ class QuizzerComponent extends React.Component {
     return <div className="quizzer">
       <h2>The Quizzer</h2>
       <Link to={'/'}><button style={{marginBottom: "10px"}}>Quiz Quiz?</button></Link>
-
       {summary}
       {summaryNavigation}
       {cardShower}

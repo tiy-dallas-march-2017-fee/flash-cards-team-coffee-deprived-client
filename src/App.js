@@ -13,7 +13,6 @@ import './scss/start.css';
 class App extends Component {
 
   render() {
-    console.log('render that ap');
     return (
       <Router>
         <div className="App">

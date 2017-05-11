@@ -12,7 +12,7 @@ let UserData = {
       url: `${URL}/api/sets`
     })
     .done((data) => {
-      console.log('data has been saved to the set', data);
+      console.log('making an ajax call');
       const action = Object.assign({}, actions.LOAD_SETS, { sets: data.sets })
       store.dispatch(action);
       userData = data;
@@ -54,7 +54,6 @@ let UserData = {
       method: 'DELETE'
     })
     .done(() => {
-      console.log(cb);
       cb();
     });
   },
@@ -71,7 +70,6 @@ let UserData = {
       }
     })
     .done((data) => {
-      console.log('I saved the data', data);
     });
   },
 
