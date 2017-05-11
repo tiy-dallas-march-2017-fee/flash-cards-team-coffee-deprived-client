@@ -22,7 +22,6 @@ class SetEditorComponent extends React.Component {
 
         <div>
           <button style={{marginTop: "10px", marginRight: "10px"}}>Save</button>
-          <Link to={'/'}><button style={{marginTop: "10px"}}>Quiz Quiz?</button></Link>
         </div>
 
       </form>
