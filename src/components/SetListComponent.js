@@ -4,53 +4,41 @@ import { Link } from 'react-router-dom';
 import { store, actions } from './../store/store.js';
 
 class SetListComponent extends React.Component {
-
   constructor() {
     super();
     this.state = store.getState();
   }
-
   componentDidMount() {
     this.unsub = store.subscribe(() => this.setState(store.getState()));
     this.loadSets();
   }
-
   loadSets() {
     UserData.loadSets((data) => {
       const action = Object.assign({}, actions.LOAD_SETS, { sets: data.sets })
       store.dispatch(action);
     });
   }
-
   componentWillUnmount() {
     this.unsub();
   }
-
   sortByName() {
-    console.log(this.state);
-
     const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'name'});
     store.dispatch(action);
   }
-
   sortByCardCount() {
     console.log(this.state);
     const action = Object.assign({}, actions.CHANGE_SORT, { sort: 'cardCount'});
     store.dispatch(action);
   }
-
   deleteSet(setId) {
     UserData.deleteSet(setId, () => this.loadSets());
   }
-
   addCards(setId) {
     this.props.history.push('/set/' + setId);
   }
-
   navigateToQuiz(setId) {
     this.props.history.push('/set/' + setId + '/quizzer');
   }
-
   render() {
     var noSetsMessaging;
     if (this.state.sets.list.length === 0) {

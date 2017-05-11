@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
+import { store, actions } from './store/store.js';
 
 import SetListComponent from './components/SetListComponent.js';
 import SetEditorComponent from './components/SetEditorComponent.js';
@@ -14,7 +15,6 @@ class App extends Component {
   render() {
     console.log('render that ap');
     return (
-
       <Router>
         <div className="App">
           <header>
@@ -26,7 +26,7 @@ class App extends Component {
                 <Route path="/create-set" render={(props) => <SetEditorComponent history={props.history} />} />
                 <Route path="/set/:setId" exact component={SetViewComponent} />
                 <Route path="/set/:setId/newcard" render={(props) => <CardEditorComponent history={props.history} setId={props.match.params.setId} />} />
-                <Route path="/set/:setId/quizzer" render={(props) => <QuizzerComponent history={props.history} setId={props.match.params.setId} />} />
+                <Route path="/set/:setId/quizzer" render={(props) => <QuizzerComponent history={props.history} setId={props.match.params.setId}  />} />
 
               </div>
           </div>

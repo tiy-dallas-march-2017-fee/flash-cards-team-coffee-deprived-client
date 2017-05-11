@@ -26,10 +26,7 @@ class QuizzerComponent extends React.Component {
   }
 
   cardClicked() {
-
     store.dispatch(actions.TOGGLE_CARD);
-    console.log(this.state.quizzer);
-
   }
 
   markCorrect() {
@@ -53,7 +50,7 @@ class QuizzerComponent extends React.Component {
     this.state.quizzer.cards[this.state.quizzer.currentCard];
     card.skippedCount += 1;
     UserData.incrementSkippedCountOnCard(this.props.setId, card.id, () => {});
-    
+
     store.dispatch(actions.QUIZ_CARD_SKIP);
   }
 
@@ -62,7 +59,6 @@ class QuizzerComponent extends React.Component {
   }
 
   restartQuiz(){
-    console.log(this.props);
     var cb = (set) => {
       const action = Object.assign({}, actions.START_QUIZ, { set: set });
       store.dispatch(action);
@@ -71,6 +67,7 @@ class QuizzerComponent extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     var cardShower;
     var cardNavigation;
     var summary;
