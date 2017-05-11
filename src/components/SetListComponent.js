@@ -44,17 +44,22 @@ class SetListComponent extends React.Component {
     if (this.state.sets.list.length === 0) {
       noSetsMessaging = <p>You do not have any sets! Create one.</p>
     }
-    var className = this.state.sets.sortSetsBy === 'name' ? ' sorting by-name' : 'sorting by-count';
+    else {
+      var className = this.state.sets.sortSetsBy === 'name' ? ' sorting by-name' : 'sorting by-count';
+      noSetsMessaging = <div className={className}>
+        <div className="by-name" onClick={() => this.sortByName() }>by name</div>
+        <div className="by-card-count" onClick={() => this.sortByCardCount() }>by # of cards</div>
+      </div>
+    }
+
+
 
     return(
       <div className="set-list">
         <h2>Set List</h2>
-        {noSetsMessaging}
+
         <Link to="/create-set" className="create-set">Create new set</Link>
-        <div className={className}>
-          <div className="by-name" onClick={() => this.sortByName() }>by name</div>
-          <div className="by-card-count" onClick={() => this.sortByCardCount() }>by # of cards</div>
-        </div>
+        {noSetsMessaging}
         <ul>
           {this.state.sets.list.map((set, index) => {
             if(set.cards.length === 0){

@@ -2,6 +2,7 @@ import React from 'react';
 import UserData from './../UserData.js';
 import QuizSummaryComponent from './QuizSummaryComponent.js';
 import { store, actions } from './../store/store.js';
+import { Link } from 'react-router-dom';
 
 class QuizzerComponent extends React.Component {
 
@@ -107,6 +108,7 @@ class QuizzerComponent extends React.Component {
 
     return <div className="quizzer">
       <h2>The Quizzer</h2>
+      <Link to={'/'}><button style={{marginBottom: "10px"}}>Quiz Quiz?</button></Link>
 
       {summary}
       {summaryNavigation}
