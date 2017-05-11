@@ -94,11 +94,12 @@ class QuizzerComponent extends React.Component {
 
     return <div className="quizzer">
       <h2>The Quizzer</h2>
-      <Link to={'/'}><button style={{marginBottom: "10px"}}>Quiz Quiz?</button></Link>
+
       {summary}
       {summaryNavigation}
       {cardShower}
       {cardNavigation}
+      <Link to={'/'}><button style={{marginBottom: "10px"}}>Quit quiz</button></Link>
     </div>
   }
 

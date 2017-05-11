@@ -62,10 +62,8 @@ class SetListComponent extends React.Component {
         {noSetsMessaging}
         <ul>
           {this.state.sets.list.map((set, index) => {
-            if(set.cards.length === 0){
-              var className = "quiz"
-            } else {
-              className = "button";
+            if(set.cards.length !== 0){
+              var quizButton = <div className="button" onClick={() => {this.navigateToQuiz(set.id)}}>quiz</div>
             }
             return <li key={set.id} className="set">
               <div className="set-name">{set.name}</div>
@@ -73,7 +71,8 @@ class SetListComponent extends React.Component {
               <p>{set.description}</p>
               <div className="button delete-set" onClick={() => {this.deleteSet(set.id)}}>delete</div>
               <div className="button add-cards" onClick={() => {this.addCards(set.id)}}>add cards</div>
-              <div className={className} onClick={() => {this.navigateToQuiz(set.id)}}>quiz</div>
+              {quizButton}
+
             </li>
           })}
         </ul>
