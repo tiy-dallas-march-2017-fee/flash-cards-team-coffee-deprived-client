@@ -55,6 +55,7 @@ let UserData = {
       method: 'DELETE'
     })
     .done(() => {
+      console.log(cb);
       cb();
     });
   },
