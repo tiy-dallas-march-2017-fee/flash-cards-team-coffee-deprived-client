@@ -32,7 +32,6 @@ class QuizzerComponent extends React.Component {
     var card = this.state.quizzer.cards[this.state.quizzer.currentCard];
     card.incorrectCount += 1;
     UserData.incrementIncorrectCountOnCard(this.props.setId, card.id, () => {});
-    console.log('component count', card.incorrectCount);
 
     store.dispatch(actions.QUIZ_CARD_INCORRECT);
   }

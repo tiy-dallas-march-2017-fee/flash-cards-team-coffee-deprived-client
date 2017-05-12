@@ -6,12 +6,17 @@ const initialState = {
   currentCard: 0,
   showFront: true,
   correctCount: 0,
+  incorrectCards: [],
   incorrectCount: 0,
   skippedCount: 0,
   cards: [],
 };
 
+
 const reducer = (state = initialState, action) => {
+  const current = state.currentCard;
+  const cards = state.cards;
+
   switch (action.type) {
     case constants.START_QUIZ:
       // var shuffledCards = _.shuffle(action.set.cards.slice(0));
@@ -30,37 +35,42 @@ const reducer = (state = initialState, action) => {
         skippedCount: 0
       });
     case constants.QUIZ_CARD_CORRECT:
+      if(state.incorrectCards.indexOf(cards[current].id) < 0){
+        increment = state.correctCount + 1;
+      } else {
+        var increment = state.correctCount;
+      }
       return Object.assign({}, state, {
-        currentCard: state.currentCard + 1,
-        correctCount: state.correctCount + 1
+        currentCard: current + 1,
+        correctCount: increment
       });
     case constants.QUIZ_CARD_INCORRECT:
-      // console.log(state.currentCard);
-      // console.log(state.cards.length);
-      // console.log(state.cards);
-
-      var incorrect = state.cards.splice(state.currentCard, 1);
-      if(state.cards.length <= 3){
-        var copy = state.cards.slice(state.currentCard);
-        var newSet = [...copy, ...incorrect];
-        console.log(newSet);
-
+      console.log(cards[current]);
+      if(state.incorrectCards.indexOf(cards[current].id) < 0){
+        state.incorrectCards.push(cards[current].id);
+        var increment = state.incorrectCount + 1;
       } else {
-        var first = state.cards.slice(0, state.currentCard + 2);
-        var second = state.cards.slice(state.currentCard + 2);
-        newSet = [...first, ...incorrect, ...second];
+        increment = state.incorrectCount;
       }
-      // console.log('beginning of copied array', first);
-      // console.log('the rest of the copied array', second);
-      // console.log('incorrect card being spliced', incorrect);
+
+      console.log(cards[current].id)
+      console.log(state.incorrectCards);
+      console.log(increment);
+
+      var incorrect = cards.splice(current, 1);
+      var first = cards.slice(0, current + 2);
+      var second = cards.slice(current + 2);
+      var newSet = [...first, ...incorrect, ...second];
+
+
+
       return Object.assign({}, state, {
         cards: newSet,
-        // currentCard: state.currentCard + 1,
-        incorrectCount: state.incorrectCount + 1
+        incorrectCount: increment
       });
     case constants.QUIZ_CARD_SKIP:
       return Object.assign({}, state, {
-      currentCard: state.currentCard + 1,
+      currentCard: state.current + 1,
       skippedCount: state.skippedCount + 1
     });
     case constants.TOGGLE_CARD:

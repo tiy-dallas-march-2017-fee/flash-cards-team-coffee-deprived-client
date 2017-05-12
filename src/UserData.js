@@ -13,7 +13,6 @@ let UserData = {
       url: `${URL}/api/sets`
     })
     .done((data) => {
-      console.log('making an ajax call');
       const action = Object.assign({}, actions.LOAD_SETS, { sets: data.sets })
       store.dispatch(action);
       userData = data;
@@ -91,9 +90,6 @@ let UserData = {
       }
     });
 
-
-    console.log('user data count', card.incorrectCount);
-
     $.ajax({
       url: `${URL}/api/sets/${setId}/card/${position}/incorrect`,
       method: 'POST'
@@ -107,7 +103,6 @@ let UserData = {
     var set = userData.sets.find((x) => { return x.id === setId });
     // We have to find the position to update the server correctly.
     // We need the card to update the correct count in memory.
-    console.log(set);
     var position;
     var card;
     set.cards.forEach((x, index) => {
@@ -122,7 +117,6 @@ let UserData = {
       method: 'POST'
     })
     .done((data) => {
-      console.log(data);
       cb();
     });
   },
